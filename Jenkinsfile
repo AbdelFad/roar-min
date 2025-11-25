@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Deploy STAGE') {
             steps {
-                git branch: 'main', url: 'https://github.com/AbdelFad/roar-min.git'
+                git branch: 'main', url: 'https://github.com/AbdelFad/roar-min-deploy.git'
                 sh "git config --global user.email 'argocd@ci.com' && git config --global user.name 'argocd_user'"
                 sh "git checkout main"
                 sh "cd ./overlays/stage/db && kustomize edit set image fadaaz/roar-db:${STAGE_VERSION}"
