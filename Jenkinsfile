@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent { label 'kube-agent' }
     environment {
         STAGE_VERSION = "0.0.${BUILD_NUMBER}"
         RC_VERSION = "1.0.${BUILD_NUMBER}"
