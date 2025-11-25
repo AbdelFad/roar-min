@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Compile') {
             tools {
-                gradle “Gradle-5”
+                gradle "Gradle-5"
             }
             steps {
                 sh 'gradle -PSTAGE_VERSION=$STAGE_VERSION clean compileJava assemble'
