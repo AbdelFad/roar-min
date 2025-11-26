@@ -14,9 +14,10 @@ pipeline {
         }
         stage('Compile') {
             tools {
-                gradle 'gradle5'
+                gradle 9.2
             }
             steps {
+                sh 'gradle init'
                 sh 'gradle -PSTAGE_VERSION=$STAGE_VERSION clean compileJava assemble'
                 stash includes: '**/web*.war', name: 'roar'
             }
