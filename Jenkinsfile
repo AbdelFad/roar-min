@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'dokcer-agent' }
+    agent any
     environment {
         STAGE_VERSION = "0.0.${BUILD_NUMBER}"
         RC_VERSION = "1.0.${BUILD_NUMBER}"
