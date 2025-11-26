@@ -1,10 +1,9 @@
 pipeline {
-    
+    agent { label 'dokcer-agent' }
     environment {
         STAGE_VERSION = "0.0.${BUILD_NUMBER}"
         RC_VERSION = "1.0.${BUILD_NUMBER}"
     }
-    agent none
     stages {
         stage('Source') {
             steps {
@@ -13,7 +12,10 @@ pipeline {
                // sh "git clone -b main https://github.com/AbdelFad/roar-min.git"
             }
         }
-        stage(' gradle') {
+        stage('Compile') {
+            tools {
+                gradle 'gradle5'
+            }
             steps {
                 sh 'gradle -PSTAGE_VERSION=$STAGE_VERSION clean compileJava assemble'
                 stash includes: '**/web*.war', name: 'roar'
