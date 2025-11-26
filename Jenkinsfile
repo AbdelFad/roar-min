@@ -12,7 +12,10 @@ pipeline {
                // sh "git clone -b main https://github.com/AbdelFad/roar-min.git"
             }
         }
-        stage(' gradle') {
+        stage('Compile') {
+            tools {
+                gradle 9.2.1
+            }
             steps {
                 sh 'gradle -PSTAGE_VERSION=$STAGE_VERSION clean compileJava assemble'
                 stash includes: '**/web*.war', name: 'roar'
